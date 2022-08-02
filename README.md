@@ -1,5 +1,5 @@
-# aggie-grades
-#yello
+# This is our personal project! 
+# It aims to give students access to valuable grade information 
+# 
 
-#hello mr kline
-#BEANS
+ 
