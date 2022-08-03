@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from key import creds
+from .key import creds
 
 
 engine = create_engine(creds.SQLALCHEMY_DATABASE_URL)
