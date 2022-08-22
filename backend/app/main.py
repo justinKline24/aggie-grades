@@ -10,12 +10,12 @@ app = FastAPI()
 
 @app.get("/class/{course}-{number}")
 def get_class(number: int,course: str, db: Session = Depends(get_db)):
-    result=conn.execute("""SELECT prof, COUNT(*), MAX(year),  SUM(atotal) AS suma, SUM(btotal),SUM(ctotal),SUM(dtotal),SUM(ftotal),SUM(aftotal), SUM(qtotal), CAST(AVG(gpa) AS DECIMAL(3,2)) FROM gradestable\
+    result=conn.execute("""SELECT prof, COUNT(*), MAX(year),  SUM(atotal) AS SumA, SUM(btotal) AS SumB,SUM(ctotal) AS SumC,SUM(dtotal) AS SumD,SUM(ftotal) AS SumF,SUM(aftotal) AS SumAF, SUM(qtotal) AS SumQ, CAST(AVG(gpa) AS DECIMAL(3,2)) FROM gradestable\
                 WHERE code = %s AND subject= '%s' GROUP BY prof\
                 ORDER BY MAX(year) DESC, AVG(gpa) DESC"""%(str(number),course))
     rows = result.fetchall()
     chart_result = conn.execute("""SELECT prof, gpa, semester,year FROM gradestable\
-                WHERE code = %s AND subject= '%s'\
+               WHERE code = %s AND subject= '%s'\
                 """%(str(number),course))
     chart_rows = chart_result.fetchall()
     conn.commit()
